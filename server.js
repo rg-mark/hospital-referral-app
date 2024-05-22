@@ -8,15 +8,16 @@ const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validator');
 const mysql = require('mysql2');
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
-
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(bodyParser.json());
 
 
 const db = mysql.createConnection({
@@ -58,6 +59,9 @@ const transporter = nodemailer.createTransport({
 app.get('/home', (req, res) => {
     res.render('home'); // This will render views/home.ejs
 });
+app.get('/dashboard', (req,res) => {
+    res.render('dashboard');
+});
 app.get('/register', (req, res) => {
     res.render('register'); // This will render views/signup.ejs
 });
@@ -93,6 +97,7 @@ app.post('/register', [
     });
 
     res.send('Registration successful! Please check your email to activate your account.');
+    res.redirect('/login');
 });
 });
 
@@ -118,6 +123,7 @@ app.get('/activate', (req, res) => {
          return res.status(500).send('Server error');
        }
        res.send('Account activated successfully. You can now login.');
+       res.redirect('/login')
      });
 });
 });
@@ -126,43 +132,30 @@ app.get('/activate', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.render('login'); // This will render views/login.ejs
-});
-
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
     
-    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
-        if (err) {
-            console.error('Error querying database:', err);
-            return res.status(500).send('Server error');
-        }
-
-        if (results.length === 0) {
-            return res.send('User not found');
-          }
-
-        const user = results[0]; 
-
-        const match = await bcrypt.compare(password, user.password);
-        if (match) {
-          
-            req.session.user = user;
-            
-            // Send login notification email
-          transporter.sendMail({
-            from: 'rugendomark@gmail.com',
-            to: email,
-            subject: 'Login Notification',
-            text: 'Your account was logged into successfully.'
-          });
-    
-          return res.send('Login successful');
-        } else {
-          return res.send('Invalid credentials');
-        }
-      
 });
+
+app.post('/login', (req, res) => {
+    let username = req.body.email;
+    let password = req.body.password;
+
+    if (username && password) {
+        db.query('SELECT * FROM users WHERE email = ?',  [email, password], function (err, results) {
+            if (err) throw err;
+            if (results.length > 0) {
+
+                res.redirect('/dashboard');
+    }  else {
+        res.send("Incorrect Username and/or Password");
+    }
+        res.end();
 });
+} else {
+    res.send('Please enter Username and Password')
+    res.end();
+}   
+});
+
 // Password reset request route
 app.get('/forgot-password', (req, res) => {
     res.render('forgot-password');
@@ -171,6 +164,7 @@ app.get('/forgot-password', (req, res) => {
 app.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
     const resetToken = crypto.randomBytes(20).toString('hex');
+    const tokenExpiry = new Date(Date.now() + 3600000);
     const sql = 'UPDATE users SET reset_token = ? WHERE email = ?';
 
     db.query(sql, [resetToken, email], (err, result) => {
@@ -203,22 +197,24 @@ app.get('/reset-password', (req, res) => {
 app.post('/reset-password', async (req, res) => {
     const { token, email, newPassword } = req.body;
     const hashedPassword =  bcrypt.hash(newPassword, 10);
-    const sql =  db.query('SELECT email FROM users WHERE reset_token = ? AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)', [token]);
-    db.query(sql, [hashedPassword, email, token], async (err, result) => {
+     db.query('SELECT * FROM users WHERE reset_token = ? AND email = ?',  [token, email], (err, result) => {
+        
+   
        
+        if (err) {
+            console.error('Error querying database:', err);
+            return res.status(500).send('Server error');
+        }
+    
         if (result.length === 0) {
             return res.status(400).send('Invalid or expired token.');
         }
-        
-        const email = result[0].email;
-
        // Update the user's password in the database
-   const reset = db.query('UPDATE users SET password = ? WHERE email = ?', [newPassword, email]);
+   const reset = db.query('UPDATE users SET password = ?, reset_token = NULL, token_expiry = NULL WHERE email = ?', [newPassword, email]);
 
-   // Invalidate or delete the token from the database
-   const remove = db.query('DELETE FROM password_reset_tokens WHERE token = ?', [token]);
      
           res.send('Password reset successful!');
+          res.redirect('/login');
 });
 });
 
