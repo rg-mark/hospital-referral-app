@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Referral Management System</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="/">Hospital Referral Management</a>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/referrals">Referrals</a></li>
+            <li><a href="/patients">Patients</a></li>
+            <li><a href="/appointments">Appointments</a></li>
+            <li><a href="/messages">Messages</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/settings">Settings</a></li>
+        </ul>
+        <div class='navbar-user' method = "GET">
+            <span>Welcome</span>
+            <a href='/logout' method="GET">Logout</a>
+        </div>
+    </nav>
+    <div class="navbar-user">
+        <span> <%=username %> </span>
+        <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href='/profile'>Profile</a>
+                <a href='/modal-logout'>Logout</a>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
