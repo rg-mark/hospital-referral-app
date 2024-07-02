@@ -42,7 +42,7 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 
     ```bash 
         npm install
-
+**package.json dependencies:**
 "dependencies": {
     "bcrypt": 
     "body-parser": 
@@ -62,65 +62,64 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 3. **Usage Instructions** 
 
 **Configure environement variables:**
-- Mysql_URI=your_mysqldb_uri
+- MYSQL_URI=your_mysqldb_uri
 - EMAIL_SERVICE=your_email_service
 - EMAIL_USER=your_email_user
 - EMAIL_PASS=your_email_password
 
 **Run the application:**
     ```bash 
-   npm run dev
+    npm run dev
 
-Access the application in your browser at `http://localhost:5000`.
+**Access the application in your browser at `http://localhost:5000`.**
 
 **Input**
-Input/Output
-Expected Input
-Patient Records:
+ ** Patient Records:**
+- Name: String
+- Date of Birth: Date
+- Medical History: Text
+- Current Condition: Text
 
-Name: String
-Date of Birth: Date
-Medical History: Text
-Current Condition: Text
-Referral Details:
+
+ **Referral Details:**
+- Patient ID: String
+- Referral Reason: Text
+- Referred To: String (Specialist or Healthcare Facility)
+- Referral Date: Date
 
 **Output**
-Patient ID: String
-Referral Reason: Text
-Referred To: String (Specialist or Healthcare Facility)
-Referral Date: Date
-Generated Output
-Referral Confirmation:
+ **Referral Confirmation:**
+- Referral ID: String
+- Status: String (e.g., "Pending", "Completed")
+- Notifications: Email
 
-Referral ID: String
-Status: String (e.g., "Pending", "Completed")
-Notifications: Email/SMS confirmation with referral details
-Status Updates:
 
-Referral ID: String
-Current Status: String (e.g., "In Progress", "Completed")
-Last Updated: Date/Time
+ **Status Updates:**
+- Referral ID: String
+- Current Status: String (e.g., "In Progress", "Completed")
+- Last Updated: Date/Time
 
 
 4. **Project Structure**
 
-- +---controllers                     # Responsible for handling incoming requests and returning responses to the client.
-|     
-|       
-|         
-- +---models                          # Connection to MySQL Database.
-|       database.js
-|       
-- +---public                          # Contains the styling for the frontend.
-|   
-|   
-|   
-- +---views                           # Stores the frontend views 
-       
+project-directory
+│   .gitignore
+│   README.md
+│   server.js                       # Contains the routing APIs
+│
+├───controllers                     # Responsible for handling incoming requests and returning responses to the client
+│       ...
+│
+├───models                          # Connection to MySQL Database
+│       database.js
+│       ...
+│
+├───public                          # Contains the styling for the frontend
+│       ...
+│
+└───views                           # Stores the frontend views
+        ...
 
-- |   .gitignore
-- |   README.md
-- |   server.js                       # Contains the routing API's 
 
 **License**
 This project is licensed under the ISC License. 
