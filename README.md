@@ -1,6 +1,6 @@
 # HRMS: A Hospital Referral Management System
 
-## Introduction
+## Description
 
 The Hospital Referral Management System (HRMS) is a comprehensive solution designed to streamline the process of patient referrals between healthcare providers. This system aims to improve communication, reduce administrative workload, and enhance patient care by ensuring timely and accurate referrals.
 
@@ -25,12 +25,23 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 
 ## Installation
 
-### Prerequisites
+### Dependencies
 
-- Node.js (>=14.x)
-- MySQL2 (>=4.x)
+- Node.js 
+- MySQL2 
 - Express.js
-
+- Bcrypt
+- Body-Parser
+- Crypto
+- Dotenv
+- EJS
+- Express-MySQL-Session
+- Express-Validator
+- Fs
+- Multer
+- Nodemailer
+  
+ 
 ### Steps
 
 1. **Clone the repository:**
@@ -39,25 +50,8 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
    cd hospital-referral-management-system
 
 2. **Install Dependencies:**
-
     ```bash 
         npm install
-**package.json dependencies:**
-"dependencies": {
-    "bcrypt": 
-    "body-parser": 
-    "crypto": 
-    "dotenv": 
-    "ejs": 
-    "express": 
-    "express-mysql-session": 
-    "express-session": 
-    "express-validator": 
-    "fs":
-    "multer": 
-    "mysql2": 
-    "nodemailer"
-  }
 
 3. **Usage Instructions** 
 
@@ -73,28 +67,30 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 
 **Access the application in your browser at `http://localhost:5000`.**
 
+
+##Input/Output##
 **Input**
-1. **Patient Records:**
+ **Patient Records:**
 - Name: String
 - Date of Birth: Date
 - Medical History: Text
 - Current Condition: Text
 
 
-2. **Referral Details:**
+ **Referral Details:**
 - Patient ID: String
 - Referral Reason: Text
 - Referred To: String (Specialist or Healthcare Facility)
 - Referral Date: Date
 
 **Output**
-1. **Referral Confirmation:**
+ **Referral Confirmation:**
 - Referral ID: String
 - Status: String (e.g., "Pending", "Completed")
 - Notifications: Email
 
 
-2. **Status Updates:**
+ **Status Updates:**
 - Referral ID: String
 - Current Status: String (e.g., "In Progress", "Completed")
 - Last Updated: Date/Time
@@ -121,5 +117,5 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
         ...
 
 
-**License:**
+##License:##
 This project is licensed under the ISC License. 
