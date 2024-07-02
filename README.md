@@ -68,7 +68,7 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 **Access the application in your browser at `http://localhost:5000`.**
 
 
-##Input/Output##
+## Input/Output
 **Input**
  **Patient Records:**
 - Name: String
@@ -117,5 +117,5 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
         ...
 
 
-##License:##
+### License:
 This project is licensed under the ISC License. 
