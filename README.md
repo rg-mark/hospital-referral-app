@@ -74,34 +74,34 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 **Access the application in your browser at `http://localhost:5000`.**
 
 **Input**
- ** Patient Records:**
+1. **Patient Records:**
 - Name: String
 - Date of Birth: Date
 - Medical History: Text
 - Current Condition: Text
 
 
- **Referral Details:**
+2. **Referral Details:**
 - Patient ID: String
 - Referral Reason: Text
 - Referred To: String (Specialist or Healthcare Facility)
 - Referral Date: Date
 
 **Output**
- **Referral Confirmation:**
+1. **Referral Confirmation:**
 - Referral ID: String
 - Status: String (e.g., "Pending", "Completed")
 - Notifications: Email
 
 
- **Status Updates:**
+2. **Status Updates:**
 - Referral ID: String
 - Current Status: String (e.g., "In Progress", "Completed")
 - Last Updated: Date/Time
 
 
 4. **Project Structure**
-
+    ```bash
 project-directory
 │   .gitignore
 │   README.md
@@ -121,5 +121,5 @@ project-directory
         ...
 
 
-**License**
+**License:**
 This project is licensed under the ISC License. 
