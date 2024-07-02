@@ -41,7 +41,7 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 2. **Install Dependencies:**
 
     ```bash 
-npm install
+        npm install
 
 "dependencies": {
     "bcrypt": 
@@ -62,14 +62,14 @@ npm install
 3. **Usage Instructions** 
 
 **Configure environement variables:**
-Mysql_URI=your_mysqldb_uri
-EMAIL_SERVICE=your_email_service
-EMAIL_USER=your_email_user
-EMAIL_PASS=your_email_password
+- Mysql_URI=your_mysqldb_uri
+- EMAIL_SERVICE=your_email_service
+- EMAIL_USER=your_email_user
+- EMAIL_PASS=your_email_password
 
-    **Run the application:**
+**Run the application:**
     ```bash 
-npm run dev
+   npm run dev
 
 Access the application in your browser at `http://localhost:5000`.
 
@@ -103,23 +103,24 @@ Last Updated: Date/Time
 
 
 4. **Project Structure**
-+---controllers                     # Responsible for handling incoming requests and returning responses to the client.
+
+- +---controllers                     # Responsible for handling incoming requests and returning responses to the client.
 |     
 |       
 |         
-+---models                          # Connection to MySQL Database.
+- +---models                          # Connection to MySQL Database.
 |       database.js
 |       
-+---public                          # Contains the styling for the frontend.
+- +---public                          # Contains the styling for the frontend.
 |   
 |   
 |   
-+---views                           # Stores the frontend views 
+- +---views                           # Stores the frontend views 
        
 
-|   .gitignore
-|   README.md
-|   server.js                       # Contains the routing API's 
+- |   .gitignore
+- |   README.md
+- |   server.js                       # Contains the routing API's 
 
 **License**
 This project is licensed under the ISC License. 
