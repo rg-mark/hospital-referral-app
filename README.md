@@ -102,22 +102,22 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 
 4. **Project Structure**
     ```bash
-project-directory
-│   .gitignore
-│   README.md
-│   server.js                       # Contains the routing APIs
-│
-├───controllers                     # Responsible for handling incoming requests and returning responses to the client
-│       ...
-│
-├───models                          # Connection to MySQL Database
-│       database.js
-│       ...
-│
-├───public                          # Contains the styling for the frontend
-│       ...
-│
-└───views                           # Stores the frontend views
+    project-directory
+    │   .gitignore
+    │   README.md
+    │   server.js                       # Contains the routing APIs
+    │
+    ├───controllers                     # Responsible for handling incoming requests and returning responses to the client
+    │       ...
+    │
+    ├───models                          # Connection to MySQL Database
+    │       database.js
+    │       ...
+    │
+    ├───public                          # Contains the styling for the frontend
+    │       ...
+    │
+    └───views                           # Stores the frontend views
         ...
 
 
