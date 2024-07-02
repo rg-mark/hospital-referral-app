@@ -40,7 +40,7 @@ The Hospital Referral Management System (HRMS) is a comprehensive solution desig
 
 2. **Install Dependencies:**
 
-```bash 
+    ```bash 
 npm install
 
 "dependencies": {
@@ -68,7 +68,7 @@ EMAIL_USER=your_email_user
 EMAIL_PASS=your_email_password
 
     **Run the application:**
-```bash 
+    ```bash 
 npm run dev
 
 Access the application in your browser at `http://localhost:5000`.
