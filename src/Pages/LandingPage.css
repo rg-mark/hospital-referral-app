@@ -1,0 +1,26 @@
+header {
+  background-image: linear-gradient(to right, #007bff, #0056b3);
+  padding: 60px 20px;
+}
+
+.card {
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: #343a40;
+  padding: 20px 0;
+}
+
+footer a {
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #007bff;
+}
